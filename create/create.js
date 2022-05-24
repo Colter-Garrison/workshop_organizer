@@ -1,9 +1,15 @@
-import { checkAuth, logout } from '../fetch-utils.js';
+import { createParticipant, getWorkshops } from '../fetch-utils.js';
+import { renderOption } from '../render-utils.js';
 
-checkAuth();
+const workshopSelect = document.getElementById('workshops');
+const participantForm = document.getElementById('new-participant');
 
-const logoutButton = document.getElementById('logout');
+async function onLoad() {
+    const workshops = await getWorkshops();
+    for (let workshop of workshops) {
+        const workshopOption = renderOption(workshop);
+        workshopSelect.append(workshopOption);
+    }
+}
+onLoad();
 
-logoutButton.addEventListener('click', () => {
-    logout();
-});

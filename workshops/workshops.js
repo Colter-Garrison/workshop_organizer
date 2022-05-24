@@ -2,10 +2,16 @@ import { checkAuth, getWorkshops, logout, deleteParticipant } from '../fetch-uti
 import { renderWorkshop } from '../render-utils.js';
 
 const logOut = document.getElementById('log-out');
+const createClass = document.getElementById('create');
 
 checkAuth();
+
 logOut.addEventListener('click', () => {
     logout();
+});
+
+createClass.addEventListener('click', () => {
+    location.replace('../create');
 });
 
 async function displayWorkshops() {
